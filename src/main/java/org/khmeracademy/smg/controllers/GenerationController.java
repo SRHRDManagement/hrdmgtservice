@@ -29,7 +29,7 @@ public class GenerationController {
 		Map<String, Object> map=new HashMap<>();
 		try {
 			if(generationService.addGeneration(generation)){
-				map.put("MESSAGE", "Inserted successfully!");
+				map.put("MESSAGE", "Inserted xxxx successfully!");
 				map.put("STATUS", true);
 			}else{
 				map.put("MESSAGE", "Inserted Unsuccessfully!");
