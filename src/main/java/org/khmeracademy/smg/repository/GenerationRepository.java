@@ -17,7 +17,6 @@ public interface GenerationRepository {
 	String C_GEN="INSERT INTO smg_generation(gen_name,  gen_start_date, gen_end_date, gen_is_finish)"
 			+ "VALUES(#{gen_name}, #{gen_start_date}, #{gen_end_date}, #{gen_is_finish})";
 	@Insert(C_GEN)
-	@Results(@Result)
 	public boolean addGeneration(Generation generation);
 	
 	//get generation
