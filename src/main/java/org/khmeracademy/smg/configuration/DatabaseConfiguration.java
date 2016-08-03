@@ -33,6 +33,7 @@ public class DatabaseConfiguration  {
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/offlinehrddb");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres");
+		System.out.println("aa");
 		return dataSource;
 	}
 	
