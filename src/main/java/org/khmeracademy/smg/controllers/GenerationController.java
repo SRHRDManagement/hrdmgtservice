@@ -36,7 +36,7 @@ public class GenerationController {
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {
-			map.put("MESSAGE", "Error!");
+			map.put("MESSAGE", "Error! hasha");
 			map.put("STATUS", false);
 			e.printStackTrace();
 		}
