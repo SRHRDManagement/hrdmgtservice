@@ -32,7 +32,7 @@ public class GenerationController {
 				map.put("MESSAGE", "Inserted xxxx successfully!");
 				map.put("STATUS", true);
 			}else{
-				map.put("MESSAGE", "Inserted Unsuccessfully!");
+				map.put("MESSAGE", "Inserted xn Unsuccessfully!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {
