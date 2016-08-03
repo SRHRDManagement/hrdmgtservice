@@ -1,4 +1,4 @@
-package com.kshrd;
+package org.khmeracademy.smg;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
