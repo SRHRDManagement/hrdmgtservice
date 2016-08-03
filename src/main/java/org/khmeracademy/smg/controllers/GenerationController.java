@@ -32,11 +32,11 @@ public class GenerationController {
 				map.put("MESSAGE", "Inserted xxxx successfully!");
 				map.put("STATUS", true);
 			}else{
-				map.put("MESSAGE", "Inserted Unsuccessfully!");
+				map.put("MESSAGE", "Inserted xnxx Unsuccessfully!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {
-			map.put("MESSAGE", "Error!");
+			map.put("MESSAGE", "Error! hasha love vvvvv");
 			map.put("STATUS", false);
 			e.printStackTrace();
 		}
