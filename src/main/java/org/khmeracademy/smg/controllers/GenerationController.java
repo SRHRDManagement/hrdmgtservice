@@ -39,6 +39,10 @@ public class GenerationController {
 			map.put("MESSAGE", "Error! hasha love vvvvv");
 			map.put("STATUS", false);
 			e.printStackTrace();
+			e.printStackTrace();
+			e.printStackTrace();
+			
+			
 		}
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
