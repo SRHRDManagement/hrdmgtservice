@@ -3,7 +3,6 @@ package org.khmeracademy.smg.controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.khmeracademy.smg.model.Generation;
 import org.khmeracademy.smg.services.GenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +28,14 @@ public class GenerationController {
 		Map<String, Object> map=new HashMap<>();
 		try {
 			if(generationService.addGeneration(generation)){
-				map.put("MESSAGE", "Inserted xxxx successfully!");
+				map.put("MESSAGE", "Inserted successfully!");
 				map.put("STATUS", true);
 			}else{
-				map.put("MESSAGE", "Inserted xnxx Unsuccessfully!");
+				map.put("MESSAGE", "Inserted Unsuccessfully!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {
-			map.put("MESSAGE", "Error! hasha love vvvvv nnnnn");
+			map.put("MESSAGE", "Error!");
 			map.put("STATUS", false);
 			e.printStackTrace();
 		}
