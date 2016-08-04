@@ -1,7 +1,7 @@
-package org.khmeracademy.smg.services;
+package org.khmeracademy.smg.api.services;
 
-import org.khmeracademy.smg.model.Course;
-import org.khmeracademy.smg.repository.CourseRepository;
+import org.khmeracademy.smg.api.model.Course;
+import org.khmeracademy.smg.api.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

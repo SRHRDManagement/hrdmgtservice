@@ -1,7 +1,7 @@
-package org.khmeracademy.smg.repository;
+package org.khmeracademy.smg.api.repository;
 
 import org.apache.ibatis.annotations.Insert;
-import org.khmeracademy.smg.model.Course;
+import org.khmeracademy.smg.api.model.Course;
 import org.springframework.stereotype.Repository;
 
 @Repository

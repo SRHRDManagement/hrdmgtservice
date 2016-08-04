@@ -1,9 +1,9 @@
-package org.khmeracademy.smg.services;
+package org.khmeracademy.smg.api.services;
 
 import java.util.ArrayList;
 
-import org.khmeracademy.smg.model.Generation;
-import org.khmeracademy.smg.repository.GenerationRepository;
+import org.khmeracademy.smg.api.model.Generation;
+import org.khmeracademy.smg.api.repository.GenerationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

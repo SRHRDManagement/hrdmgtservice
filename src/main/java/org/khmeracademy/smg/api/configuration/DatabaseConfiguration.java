@@ -1,4 +1,4 @@
-package org.khmeracademy.smg.configuration;
+package org.khmeracademy.smg.api.configuration;
 
 import javax.sql.DataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -13,7 +13,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 
 @Configuration
-@MapperScan("org.khmeracademy.smg.repository")
+@MapperScan("org.khmeracademy.smg.api.repository")
 @PropertySource(value = { "classpath:configuration.properties" })
 @EnableSwagger
 public class DatabaseConfiguration  {

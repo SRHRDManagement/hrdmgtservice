@@ -1,4 +1,4 @@
-package org.khmeracademy.smg.configuration.security;
+package org.khmeracademy.smg.api.configuration.security;
 
 import java.io.IOException;
 

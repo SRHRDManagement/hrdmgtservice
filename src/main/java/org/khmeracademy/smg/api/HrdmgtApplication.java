@@ -1,4 +1,4 @@
-package org.khmeracademy.smg;
+package org.khmeracademy.smg.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

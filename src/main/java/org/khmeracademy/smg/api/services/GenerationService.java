@@ -1,8 +1,8 @@
-package org.khmeracademy.smg.services;
+package org.khmeracademy.smg.api.services;
 
 import java.util.ArrayList;
 
-import org.khmeracademy.smg.model.Generation;
+import org.khmeracademy.smg.api.model.Generation;
 
 public interface GenerationService {
 	public boolean addGeneration(Generation generation);

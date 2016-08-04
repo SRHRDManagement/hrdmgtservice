@@ -1,4 +1,4 @@
-package org.khmeracademy.smg.model;
+package org.khmeracademy.smg.api.model;
 
 import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
