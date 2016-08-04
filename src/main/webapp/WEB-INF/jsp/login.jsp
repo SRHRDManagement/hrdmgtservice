@@ -11,10 +11,6 @@
 <div id="boxForm">
 	<h2 id="title">KSHRD Center, Data Access</h2>
 	<form action="login" id="frmLogin" method="POST">
-		<!-- <input type="text" name="username" class="text"/> <br/>
-		<input type="text" name="password" class="pwd"/> <br/>
-		
-		<input type="submit"/> -->
 		<input type="text" class="text" name='username' placeholder="username" required/><br>
     	<input class="text" id='pwd'  type="password" name="password" placeholder="Password" required/><br>
     <input class='button' type='submit' value='Login'>
@@ -46,7 +42,7 @@
   	            	}else if(data == "Bad credentials"){
   	            		alert(data);
   	            	}else{
-  	            		alert("Logined success.");
+  	            		//alert("Logined success.");
   	            		location.href = "${pageContext.request.contextPath}/"+data;
   	            	}
   	            	

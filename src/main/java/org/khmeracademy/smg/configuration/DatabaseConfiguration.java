@@ -38,7 +38,6 @@ public class DatabaseConfiguration  {
 		dataSource.setUrl(environment.getProperty("MOL.dataSource.url"));
 		dataSource.setUsername(environment.getProperty("MOL.dataSource.username"));
 		dataSource.setPassword(environment.getProperty("MOL.dataSource.password"));
-		System.out.println("aa");
 		return dataSource;
 	}
 	
