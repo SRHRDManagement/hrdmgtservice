@@ -34,7 +34,7 @@ public class UserController {
 			map.put("STATUS",false);
 			map.put("MESSAGE", "Something is broken. Please contact to developers team!");
 			e.printStackTrace();
-			System.out.println("vans");
+			System.out.println("vansar");
 		}
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
