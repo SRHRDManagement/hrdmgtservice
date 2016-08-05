@@ -1,4 +1,4 @@
-package org.khmeracademy.smg.configuration.security;
+package org.khmeracademy.smg.api.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

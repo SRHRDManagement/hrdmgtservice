@@ -1,46 +1,42 @@
-package org.khmeracademy.smg.configuration.security;
+package org.khmeracademy.smg.api.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@Order(1)
+public class APIConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	@Qualifier(value="ajaxAuthenticationSuccessHandler")
-	private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
-	
-	@Autowired
-	@Qualifier(value="ajaxAuthenticationFailureHandler")
-	private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+	@Qualifier("RESTAuthenticationEntryPoint")
+	private RESTAuthenticationEntryPoint restAuthenticationEntryPoint;
 	
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("vansa").password("amret").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("hrd").password("!@#hrdapi").roles("API_DEVELOPER");
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
+		http.antMatcher("/api/**")
 			.authorizeRequests()
-			.antMatchers("/swagger/**").hasRole("ADMIN");
-		http
-			.formLogin()
-			.loginPage("/login")
-			.usernameParameter("username")
-			.passwordParameter("password")
-			.permitAll()
-			.failureHandler(ajaxAuthenticationFailureHandler)
-			.successHandler(ajaxAuthenticationSuccessHandler);
+			.anyRequest().hasRole("API_DEVELOPER");
 		
 		http.csrf().disable();
-		http.exceptionHandling().accessDeniedPage("/access-denied");
+		
+		// Basic Authentication
+		http.httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint);
+		
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
 	}
 }

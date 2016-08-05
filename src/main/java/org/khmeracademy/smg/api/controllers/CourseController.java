@@ -1,9 +1,10 @@
-package org.khmeracademy.smg.controllers;
+package org.khmeracademy.smg.api.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.khmeracademy.smg.model.Course;
-import org.khmeracademy.smg.services.CourseService;
+
+import org.khmeracademy.smg.api.model.Course;
+import org.khmeracademy.smg.api.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

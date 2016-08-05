@@ -1,4 +1,4 @@
-package org.khmeracademy.smg.configuration;
+package org.khmeracademy.smg.api.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
