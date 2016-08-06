@@ -123,4 +123,26 @@ public class GenerationController {
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="generation-not-finish", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> generationNotFinish(){
+		boolean gen_is_finish=false;
+		Map<String, Object> map=new HashMap<>();
+		Generation generation = generationService.generationNotFinish(gen_is_finish);
+		try {
+			if(generation!=null){
+				map.put("DATA", generation);
+				map.put("MESSAGE", "Data found generation is still go on successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Data not found Unsuccessfully!");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
 }

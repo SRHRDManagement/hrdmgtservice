@@ -4,6 +4,7 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Course {
+	
 	@JsonProperty("COUID")
 	private int cou_id;
 	
@@ -21,9 +22,6 @@ public class Course {
 	
 	@JsonProperty("COUISFINISH")
 	private boolean cou_is_finish;
-	
-	@JsonProperty("COUCOLOR")
-	private String cou_color;
 
 	public int getCou_id() {
 		return cou_id;
@@ -55,14 +53,6 @@ public class Course {
 
 	public void setGen_id(int gen_id) {
 		this.gen_id = gen_id;
-	}
-
-	public String getCou_color() {
-		return cou_color;
-	}
-
-	public void setCou_color(String cou_color) {
-		this.cou_color = cou_color;
 	}
 
 	public boolean isCou_is_finish() {

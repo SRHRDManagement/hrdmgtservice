@@ -1,5 +1,6 @@
 package org.khmeracademy.smg.api.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +33,27 @@ public class CourseController {
 				map.put("STATUS", true);
 			}else{
 				map.put("MESSAGE", "Can not create new course successfully!");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{gen_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getCourseByGenerationId(@PathVariable int gen_id){
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Course> courseList = courseService.getCourseByGeneration(gen_id);
+		try {
+			if(courseList!=null){
+				map.put("DATA", courseList);
+				map.put("MESSAGE", "Get course by generation id successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "can not get course by generation id!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {

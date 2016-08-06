@@ -38,4 +38,9 @@ public class GenerationServiceImp implements GenerationService {
 		return generationRepository.disabledGeneration(generation);
 	}
 
+	@Override
+	public Generation generationNotFinish(boolean gen_is_finish) {
+		return generationRepository.generationNotFinish(gen_is_finish);
+	}
+
 }

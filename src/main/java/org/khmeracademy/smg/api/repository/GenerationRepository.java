@@ -20,7 +20,7 @@ public interface GenerationRepository {
 	public boolean addGeneration(Generation generation);
 	
 	//get generation
-	String R_GEN="SELECT * FROM smg_generation";
+	String R_GEN="SELECT * FROM smg_generation ORDER BY gen_id";
 	@Select(R_GEN)
 	public ArrayList<Generation> getGeneration();
 	
@@ -34,8 +34,14 @@ public interface GenerationRepository {
 	@Select(GETBYID)
 	public Generation getGenerationById(int gen_id);
 	
+	//disable generation
 	String DISABLED_GEN="UPDATE smg_generation SET gen_is_finish=#{gen_is_finish} WHERE gen_id=#{gen_id}";
 	@Update(DISABLED_GEN)
 	public boolean disabledGeneration(Generation generation);
+	
+	//find generation that not finish
+	String GOON_GEN="select * from smg_generation where gen_is_finish=#{gen_is_finish}";
+	@Select(GOON_GEN)
+	public Generation generationNotFinish(boolean gen_is_finish);
 	
 }

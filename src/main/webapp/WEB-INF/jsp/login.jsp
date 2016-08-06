@@ -60,13 +60,13 @@
 	      
         	
         	
-        	$.ajax({ 
+        	/* $.ajax({ 
 			    url: "http://localhost:9999/api/user?page=3&limit=5", 
 			    type: 'GET', 
 			    beforeSend: function(xhr) {
                     xhr.setRequestHeader("Accept", "application/json");
                     xhr.setRequestHeader("Content-Type", "application/json");
-//                     xhr.setRequestHeader("Authorization" , "Basic ZGV2OiFAI2FwaQ==");
+                   xhr.setRequestHeader("Authorization" , "Basic ZGV2OiFAI2FwaQ==");
                 },
 			    success: function(data) { 
 					console.log(data);
@@ -76,7 +76,7 @@
 			    error:function(data,status,er) { 
 			        console.log("error: "+data+" status: "+status+" er:"+er);
 			    }
-			});
+			}); */
         	
         
         });
