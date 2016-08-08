@@ -23,4 +23,24 @@ public class CourseServiceImp implements CourseService {
 		return courseRepository.getCourseByGeneration(gen_id);
 	}
 
+	@Override
+	public Course getCourseById(int cou_id) {
+		return courseRepository.getCourseById(cou_id);
+	}
+
+	@Override
+	public boolean updateCourse(Course course) {
+		return courseRepository.updateCourse(course);
+	}
+
+	@Override
+	public boolean disabledCourse(Course course) {
+		return courseRepository.disabledCourse(course);
+	}
+
+	@Override
+	public Course courseNotFinish(boolean cou_is_finish) {
+		return courseRepository.courseNotFinish(cou_is_finish);
+	}
+
 }
