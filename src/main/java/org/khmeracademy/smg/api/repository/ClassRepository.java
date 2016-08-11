@@ -23,18 +23,20 @@ public interface ClassRepository {
 	@Select(R_CLA)
 	public ArrayList<Class> getClassByCourse(int cou_id);
 	
-	String R_BYID_COU="select * from smg_course where cou_id=#{cou_id}";
-	@Select(R_BYID_COU)
-	public Course getCourseById(int cou_id);
+	// get class by class id *
+	String R_CLA_BYID="select * from smg_class where cla_id=#{cla_id}";
+	@Select(R_CLA_BYID)
+	public Class getClassById(int cla_id);
 	
-	String U_COU="update smg_course set cou_name=#{cou_name}, cou_start_date=#{cou_start_date}, cou_end_date=#{cou_end_date}"
-			+ "where cou_id=#{cou_id}";
-	@Update(U_COU)
-	public boolean updateCourse(Course course);
+	// update class *
+	String U_CLA="update smg_class set cla_name=#{cla_name}, cla_date=#{cla_date}"
+			+ "where cla_id=#{cla_id}";
+	@Update(U_CLA)
+	public boolean updateClass(Class clas);
 	
-	//disable generation
-	String DISABLED_COU="UPDATE smg_course SET cou_is_finish=#{cou_is_finish} WHERE cou_id=#{cou_id}";
-	@Update(DISABLED_COU)
-	public boolean disabledCourse(Course course);
+	//disable class *
+	String DISABLED_CLA="update smg_class SET cla_active=#{cla_active} WHERE cla_id=#{cla_id}";
+	@Update(DISABLED_CLA)
+	public boolean disabledCourse(Class cla);
 	
 }

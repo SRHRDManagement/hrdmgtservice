@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.smg.api.model.Course;
+import org.khmeracademy.smg.api.model.Subject;
 import org.khmeracademy.smg.api.model.Class;
 import org.khmeracademy.smg.api.services.ClassService;
 import org.khmeracademy.smg.api.services.CourseService;
+import org.khmeracademy.smg.api.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +22,66 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/class")
-public class ClassController {
+@RequestMapping("/api/subject")
+public class SubjectController {
 	
 	@Autowired
-	private ClassService classService;
+	private SubjectService subjectService;
 	
-	@Autowired
-	private CourseService courseService;
+	// get subject *
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getSubject(){
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Subject> subjectList = subjectService.getSubject();
+		try {
+			if(!subjectList.isEmpty()){
+				map.put("DATA", subjectList);
+				map.put("MESSAGE", "Get subjects successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "can not get subject!");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
 	
-	// insert class in each course *
+	// get subject by id *
+	@RequestMapping(value="/{sub_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getSubjectById(@PathVariable int sub_id){
+		Map<String, Object> map = new HashMap<>();
+		Subject subject = subjectService.getSubjectById(sub_id);
+		try {
+			if(subject!=null){
+				map.put("DATA", subject);
+				map.put("MESSAGE", "Get subjects successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "can not get subject!");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	// insert subject *
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> addClass(@RequestBody Class className){
+	public ResponseEntity<Map<String, Object>> insertSubject(@RequestBody Subject subject){
 		Map<String, Object> map = new HashMap<>();
 		try {
-			if(classService.addClass(className)){
-				map.put("MESSAGE", "Create new classroom successfully!");
+			if(subjectService.insertSubject(subject)){
+				map.put("MESSAGE", "Insert subjects successfully!");
 				map.put("STATUS", true);
 			}else{
-				map.put("MESSAGE", "Can not create new classroom successfully!");
+				map.put("MESSAGE", "can not insert subject!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {
@@ -49,59 +92,16 @@ public class ClassController {
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 	
-	// get class in each course *
-	@RequestMapping(value="/{cou_id}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> getClassByCourseId(@PathVariable int cou_id){
-		Map<String, Object> map = new HashMap<>();
-		ArrayList<Class> classList = classService.getClassByCourse(cou_id);
-		try {
-			if(!classList.isEmpty()){
-				map.put("DATA", classList);
-				map.put("MESSAGE", "Get class by course id successfully!");
-				map.put("STATUS", true);
-			}else{
-				map.put("MESSAGE", "can not get class by course id!");
-				map.put("STATUS", false);
-			}
-		} catch (Exception e) {
-			map.put("MESSAGE", "Error!");
-			map.put("STATUS", false);
-			e.printStackTrace();
-		}
-		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
-	}
-	
-	// get class by id *
-		@RequestMapping(value="get-class-by-id/{cla_id}", method=RequestMethod.GET)
-		public ResponseEntity<Map<String, Object>> getClassById(@PathVariable int cla_id){
-			Map<String, Object> map = new HashMap<>();
-			Class clas = classService.getClassById(cla_id);
-			try {
-				if(clas!=null){
-					map.put("DATA", clas);
-					map.put("MESSAGE", "Get class by id successfully!");
-					map.put("STATUS", true);
-				}else{
-					map.put("MESSAGE", "can not get class by id!");
-					map.put("STATUS", false);
-				}
-			} catch (Exception e) {
-				map.put("MESSAGE", "Error!");
-				map.put("STATUS", false);
-				e.printStackTrace();
-			}
-			return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
-		}
-	
+	// update subject *
 	@RequestMapping(method=RequestMethod.PUT)
-	public ResponseEntity<Map<String, Object>> updateClass(@RequestBody Class clas){
+	public ResponseEntity<Map<String, Object>> updateSubject(@RequestBody Subject subject){
 		Map<String, Object> map = new HashMap<>();
 		try {
-			if(classService.updateClass(clas)){
-				map.put("MESSAGE", "Update class successfully!");
+			if(subjectService.updateSubject(subject)){
+				map.put("MESSAGE", "Update subjects successfully!");
 				map.put("STATUS", true);
 			}else{
-				map.put("MESSAGE", "Can not update class!");
+				map.put("MESSAGE", "can not update subject!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {
@@ -112,15 +112,16 @@ public class ClassController {
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String, Object>> disabledClass(@RequestBody Class clas){
-		Map<String, Object> map=new HashMap<>();
+	// delete subject *
+	@RequestMapping(value="delete", method=RequestMethod.PUT)
+	public ResponseEntity<Map<String, Object>> deleteDisableSubject(@RequestBody Subject subject){
+		Map<String, Object> map = new HashMap<>();
 		try {
-			if(classService.disabledCourse(clas)){
-				map.put("MESSAGE", "disable class successfully!");
+			if(subjectService.deleteDisableSubject(subject)){
+				map.put("MESSAGE", "Update subjects successfully!");
 				map.put("STATUS", true);
 			}else{
-				map.put("MESSAGE", "disable class Unsuccessfully!");
+				map.put("MESSAGE", "can not update subject!");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {

@@ -23,4 +23,19 @@ public class ClassServiceImp implements ClassService {
 		return classRepository.addClass(className);
 	}
 
+	@Override
+	public Class getClassById(int cla_id) {
+		return classRepository.getClassById(cla_id);
+	}
+
+	@Override
+	public boolean updateClass(Class clas) {
+		return classRepository.updateClass(clas);
+	}
+
+	@Override
+	public boolean disabledCourse(Class cla) {
+		return classRepository.disabledCourse(cla);
+	}
+
 }
