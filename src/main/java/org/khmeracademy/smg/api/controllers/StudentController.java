@@ -51,25 +51,67 @@ public class StudentController {
 	}
 	
 	// get all student
-		@RequestMapping(method=RequestMethod.GET)
-		public ResponseEntity<Map<String, Object>> getStudent(){
-			Map<String, Object> map = new HashMap<>();
-			ArrayList<Student> list=studentService.getStudent();
-			try {
-				if(!list.isEmpty()){
-					map.put("DATA", list);
-					map.put("MESSAGE", "Get student successfully!");
-					map.put("STATUS", true);
-				}else{
-					map.put("MESSAGE", "Can not get student!");
-					map.put("STATUS", false);
-				}
-			} catch (Exception e) {
-				map.put("MESSAGE", "Error!");
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getStudent(){
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Student> list=studentService.getStudent();
+		try {
+			if(!list.isEmpty()){
+				map.put("DATA", list);
+				map.put("MESSAGE", "Get student successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Can not get student!");
 				map.put("STATUS", false);
-				e.printStackTrace();
 			}
-			return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
 		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	// get all student
+	@RequestMapping(value="/{stu_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getStudentById(@PathVariable int stu_id){
+		Map<String, Object> map = new HashMap<>();
+		Student listById=studentService.getStudentById(stu_id);
+		try {
+			if(listById!=null){
+				map.put("DATA", listById);
+				map.put("MESSAGE", "Get student by id: "+stu_id+" successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Can not get student by id!");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	// update student
+	@RequestMapping(method=RequestMethod.PUT)
+	public ResponseEntity<Map<String, Object>> updateStudent(@RequestBody Student student){
+		Map<String, Object> map = new HashMap<>();
+		try {
+			if(studentService.updateStudent(student)){
+				map.put("MESSAGE", "Update student successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Can not update student!");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
 	
 }

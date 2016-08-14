@@ -23,4 +23,14 @@ public class StudentServiceImp implements StudentService {
 		return studentRepository.getStudent();
 	}
 
+	@Override
+	public Student getStudentById(int stu_id) {
+		return studentRepository.getStudentById(stu_id);
+	}
+
+	@Override
+	public boolean updateStudent(Student student) {
+		return studentRepository.updateStudent(student);
+	}
+
 }

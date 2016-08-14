@@ -6,4 +6,6 @@ import org.khmeracademy.smg.api.model.Student;
 public interface StudentService {
 	public boolean insertStudent(Student student);
 	public ArrayList<Student> getStudent();
+	public Student getStudentById(int stu_id);
+	public boolean updateStudent(Student student);
 }
