@@ -24,4 +24,14 @@ public class UserServiceImp implements UserService {
 		return userRepository.findRolesByRoleId(rol_id);
 	}
 
+	@Override
+	public ArrayList<User> getAllUsers() {
+		return userRepository.getAllUsers();
+	}
+
+	@Override
+	public boolean addUser(User user) {
+		return userRepository.addUser(user);
+	}
+
 }

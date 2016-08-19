@@ -26,9 +26,6 @@ public class ClassController {
 	@Autowired
 	private ClassService classService;
 	
-	@Autowired
-	private CourseService courseService;
-	
 	// insert class in each course *
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> addClass(@RequestBody Class className){

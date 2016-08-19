@@ -33,4 +33,9 @@ public class StaffServiceImp implements StaffService {
 		return staffRep.updateStaff(staff);
 	}
 
+	@Override
+	public ArrayList<Staff> getStaffNotUser() {
+		return staffRep.getStaffNotUser();
+	}
+
 }

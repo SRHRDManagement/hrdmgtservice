@@ -41,7 +41,9 @@ public class Student {
 	private String stu_status;
 	@JsonProperty("GENID")
 	private int gen_id;
-	
+	private EnrollStudent enroll;
+	private Attendance attendance;
+
 	public String getStu_status() {
 		return stu_status;
 	}
@@ -149,5 +151,17 @@ public class Student {
 	}
 	public void setGen_id(int gen_id) {
 		this.gen_id = gen_id;
+	}
+	public EnrollStudent getEnroll() {
+		return enroll;
+	}
+	public Attendance getAttendance() {
+		return attendance;
+	}
+	public void setEnroll(EnrollStudent enroll) {
+		this.enroll = enroll;
+	}
+	public void setAttendance(Attendance attendance) {
+		this.attendance = attendance;
 	}
 }

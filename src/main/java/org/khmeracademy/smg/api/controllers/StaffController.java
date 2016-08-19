@@ -88,6 +88,28 @@ public class StaffController {
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 	
+	// get all staffs not user
+	@RequestMapping(value="staffs-not-user", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getStaffNotUser(){
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Staff> listNotUser = staffService.getStaffNotUser();
+		try {
+			if(!listNotUser.isEmpty()){
+				map.put("DATA", listNotUser);
+				map.put("MESSAGE", "Get student not user successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Can not get student not user");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
 	// update student
 	@RequestMapping(method=RequestMethod.PUT)
 	public ResponseEntity<Map<String, Object>> updateStaff(@RequestBody Staff staff){

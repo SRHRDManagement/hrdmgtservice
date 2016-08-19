@@ -21,6 +21,11 @@ public interface StaffRepository {
 	@Select(R_STA)
 	public ArrayList<Staff> getStaff();
 	
+	//get all staff that not register user
+	String R_STA_NOT_USER="select * from smg_staff s where not exists(select u.sta_id from smg_user u where s.sta_id=u.sta_id) order by sta_id";
+	@Select(R_STA_NOT_USER)
+	public ArrayList<Staff> getStaffNotUser();
+	
 	//get student by id
 	String R_STA_BYID="select * from smg_staff where sta_id=#{sta_id}";
 	@Select(R_STA_BYID)

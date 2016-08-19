@@ -9,4 +9,5 @@ public interface StaffService {
 	public ArrayList<Staff> getStaff();
 	public Staff getStudentById(int sta_id);
 	public boolean updateStaff(Staff staff);
+	public ArrayList<Staff> getStaffNotUser();
 }
