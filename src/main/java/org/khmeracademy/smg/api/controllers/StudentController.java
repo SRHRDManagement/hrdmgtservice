@@ -77,8 +77,8 @@ public class StudentController {
 	}
 	
 	// get all student with attendance
-	@RequestMapping(value="att/{cla_id}/{att_date_st}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> getStudentAttendance(@PathVariable int cla_id, @PathVariable String att_date_st) throws ParseException{
+	@RequestMapping(value="att/{cla_id}/{att_date_st}/{att_shift}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getStudentAttendance(@PathVariable int cla_id, @PathVariable String att_date_st, @PathVariable String att_shift) throws ParseException{
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date parse=format.parse(att_date_st);
 		java.sql.Date date=new java.sql.Date(parse.getYear(), parse.getMonth(), parse.getDate());
@@ -92,6 +92,7 @@ public class StudentController {
 		
 		Attendance attendance = new Attendance();
 		attendance.setAtt_date(date);
+		attendance.setAtt_shift(att_shift);
 		student.setAttendance(attendance);
 		Map<String, Object> map = new HashMap<>();
 		ArrayList<Student> list=studentService.getSudentAttendance(student);

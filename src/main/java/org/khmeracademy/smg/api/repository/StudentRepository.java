@@ -51,10 +51,9 @@ public interface StudentRepository {
 	public ArrayList<EnrollStudent> connectionStudent(int cla_id);
 	
 	String R_STU_ATT="SELECT s.*, at.* FROM smg_student s"
-+" INNER JOIN smg_studentenroll se ON se.stu_id = s.stu_id"
-+" FULL OUTER JOIN smg_attendance at ON at.stu_id = s.stu_id"
-+" WHERE se.cla_id = #{enroll.cla_id} AND at.att_date = #{attendance.att_date} OR"
-+" se.cla_id = #{enroll.cla_id} AND at.att_date ISNULL";
++" JOIN smg_studentenroll se ON se.stu_id = s.stu_id"
++" LEFT JOIN smg_attendance at on at.stu_id=s.stu_id AND at.att_date = #{attendance.att_date} AND at.att_shift = #{attendance.att_shift}"
++" WHERE se.cla_id = #{enroll.cla_id}";
 	@Select(R_STU_ATT)
 	@Results(value={
 			@Result(property="enroll.stu_id", column="stu_id"),
@@ -62,6 +61,7 @@ public interface StudentRepository {
 			@Result(property="attendance.att_reason", column="att_reason"),
 			@Result(property="attendance.abs_id", column="abs_id"),
 			@Result(property="enroll.cla_id", column="cla_id"),
+			@Result(property="attendance.att_shift", column="att_shift"),
 			@Result(property="attendance.att_date", column="att_date")
 	})
 	public ArrayList<Student> getSudentAttendance(Student student);

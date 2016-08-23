@@ -2,6 +2,7 @@ package org.khmeracademy.smg.api.services;
 
 import java.util.ArrayList;
 
+import org.khmeracademy.smg.api.model.EnrollStaff;
 import org.khmeracademy.smg.api.model.Staff;
 
 public interface StaffService {
@@ -10,4 +11,5 @@ public interface StaffService {
 	public Staff getStudentById(int sta_id);
 	public boolean updateStaff(Staff staff);
 	public ArrayList<Staff> getStaffNotUser();
+	public ArrayList<Staff> getStaffNotProcess(EnrollStaff enrollStaff);
 }

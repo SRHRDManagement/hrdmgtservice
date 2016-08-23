@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository {
-	@Select("SELECT usr_id, usr_email, usr_password, rol_id FROM smg_user WHERE usr_email=#{userEmail}")
+	@Select("SELECT usr_id, usr_email, usr_password, usr_avatar, rol_id, usr_firstname, usr_lastname FROM smg_user WHERE usr_email=#{userEmail}")
 	@Results(value = {
 			@Result(property = "roles", column = "rol_id",
 				many = @Many(select = "findRolesByRoleId")

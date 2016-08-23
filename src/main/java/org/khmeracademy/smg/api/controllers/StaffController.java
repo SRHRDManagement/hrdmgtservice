@@ -3,7 +3,11 @@ package org.khmeracademy.smg.api.controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.khmeracademy.smg.api.model.Class;
+import org.khmeracademy.smg.api.model.EnrollStaff;
 import org.khmeracademy.smg.api.model.Staff;
+import org.khmeracademy.smg.api.model.Subject;
 import org.khmeracademy.smg.api.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -100,6 +104,38 @@ public class StaffController {
 				map.put("STATUS", true);
 			}else{
 				map.put("MESSAGE", "Can not get student not user");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	// get all staffs not in process
+	@RequestMapping(value="not-in-study-process/{cla_id}/{sub_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getStaffNotProcess(@PathVariable int cla_id, @PathVariable int sub_id){
+		EnrollStaff enrollStaff = new EnrollStaff();
+		
+		Class clas=new Class();
+		clas.setCla_id(cla_id);
+		enrollStaff.setClas(clas);
+		
+		Subject subject=new Subject();
+		subject.setSub_id(sub_id);
+		enrollStaff.setSubject(subject);
+		
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Staff> listNotUser = staffService.getStaffNotProcess(enrollStaff);
+		try {
+			if(!listNotUser.isEmpty()){
+				map.put("DATA", listNotUser);
+				map.put("MESSAGE", "Get student not process successfully!");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Can not get student not process");
 				map.put("STATUS", false);
 			}
 		} catch (Exception e) {

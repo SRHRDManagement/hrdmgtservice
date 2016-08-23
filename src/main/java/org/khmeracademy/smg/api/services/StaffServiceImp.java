@@ -2,6 +2,7 @@ package org.khmeracademy.smg.api.services;
 
 import java.util.ArrayList;
 
+import org.khmeracademy.smg.api.model.EnrollStaff;
 import org.khmeracademy.smg.api.model.Staff;
 import org.khmeracademy.smg.api.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class StaffServiceImp implements StaffService {
 	@Override
 	public ArrayList<Staff> getStaffNotUser() {
 		return staffRep.getStaffNotUser();
+	}
+
+	@Override
+	public ArrayList<Staff> getStaffNotProcess(EnrollStaff enrollStaff) {
+		return staffRep.getStaffNotProcess(enrollStaff);
 	}
 
 }
