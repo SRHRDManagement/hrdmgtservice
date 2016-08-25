@@ -15,6 +15,14 @@ public class Subject {
 	private boolean sub_active;
 	@JsonProperty("SUBDATE")
 	private Date sub_date;
+	@JsonProperty("SUBPERCENT")
+	private float sub_percent;
+	public float getSub_percent() {
+		return sub_percent;
+	}
+	public void setSub_percent(float sub_percent) {
+		this.sub_percent = sub_percent;
+	}
 	
 	public int getSub_id() {
 		return sub_id;

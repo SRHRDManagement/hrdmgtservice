@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.khmeracademy.smg.api.model.Course;
 import org.khmeracademy.smg.api.model.Subject;
+import org.khmeracademy.smg.api.repository.selectproviders.ScoreSelectProvider;
 import org.khmeracademy.smg.api.model.Class;
 import org.khmeracademy.smg.api.services.ClassService;
 import org.khmeracademy.smg.api.services.CourseService;
@@ -33,6 +34,8 @@ public class SubjectController {
 	public ResponseEntity<Map<String, Object>> getSubject(){
 		Map<String, Object> map = new HashMap<>();
 		ArrayList<Subject> subjectList = subjectService.getSubject();
+		ScoreSelectProvider ssp = new ScoreSelectProvider();
+		//ssp.setSubject(subjectList);
 		try {
 			if(!subjectList.isEmpty()){
 				map.put("DATA", subjectList);

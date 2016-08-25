@@ -3,13 +3,10 @@ package org.khmeracademy.smg.api.controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.khmeracademy.smg.api.model.Course;
+
 import org.khmeracademy.smg.api.model.EnrollStudent;
 import org.khmeracademy.smg.api.model.Month;
 import org.khmeracademy.smg.api.model.Score;
-import org.khmeracademy.smg.api.model.Class;
-import org.khmeracademy.smg.api.services.ClassService;
-import org.khmeracademy.smg.api.services.CourseService;
 import org.khmeracademy.smg.api.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,6 +51,28 @@ public class ScoreController {
 	public ResponseEntity<Map<String, Object>> getAllMonth(){
 		Map<String, Object> map = new HashMap<>();
 		ArrayList<Month> list = service.getAllMonths();
+		try {
+			if(!list.isEmpty()){
+				map.put("DATA", list);
+				map.put("MESSAGE", "Data found");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "Not found");
+				map.put("STATUS", false);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	// get report
+	@RequestMapping(value="report/{mon_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getReportScore(@PathVariable int mon_id){
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Map<String,Object>> list = service.getReport(mon_id);
 		try {
 			if(!list.isEmpty()){
 				map.put("DATA", list);

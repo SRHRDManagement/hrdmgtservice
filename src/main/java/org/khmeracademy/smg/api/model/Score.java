@@ -6,13 +6,14 @@ public class Score {
 	@JsonProperty("SCOID")
 	private int sco_id;
 	@JsonProperty("SCOSCORE")
-	private int sco_score;
+	private float sco_score;
 	@JsonProperty("STUID")
 	private int stu_id;
 	@JsonProperty("SUBID")
 	private int sub_id;
 	@JsonProperty("MONID")
 	private int mon_id;
+
 	private Student student;
 	private EnrollStudent enrollStudent;
 	
@@ -31,7 +32,7 @@ public class Score {
 	public int getSco_id() {
 		return sco_id;
 	}
-	public int getSco_score() {
+	public float getSco_score() {
 		return sco_score;
 	}
 	public int getStu_id() {
@@ -46,7 +47,7 @@ public class Score {
 	public void setSco_id(int sco_id) {
 		this.sco_id = sco_id;
 	}
-	public void setSco_score(int sco_score) {
+	public void setSco_score(float sco_score) {
 		this.sco_score = sco_score;
 	}
 	public void setStu_id(int stu_id) {

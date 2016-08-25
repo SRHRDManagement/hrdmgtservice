@@ -1,18 +1,27 @@
 package org.khmeracademy.smg.api.repository;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.smg.api.model.Month;
 import org.khmeracademy.smg.api.model.Score;
+import org.khmeracademy.smg.api.model.Subject;
+import org.khmeracademy.smg.api.repository.selectproviders.ScoreSelectProvider;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScoreRepository {
+	
+	@SelectProvider(type=ScoreSelectProvider.class, method= "getReport")
+	ArrayList<Map<String, Object>> getReport(@Param("subjects")List<Subject> subject, @Param("mon_id")int mon_id);
+	
 	
 	String R_MON="select * from smg_month";
 	@Select(R_MON)
