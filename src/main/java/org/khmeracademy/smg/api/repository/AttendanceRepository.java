@@ -24,9 +24,9 @@ public interface AttendanceRepository {
 	public ArrayList<Attendance> checkAttendanceExist();
 	
 	//update attendance
-	String U_ATT_EXIST="UPDATE smg_attendance SET att_reason=#{att_reason}, abs_id=#{abs_id} WHERE att_date=#{att_date} AND att_shift=#{att_shift} AND stu_id=#{stu_id};"
-			+ " INSERT INTO smg_attendance(att_date, att_shift, stu_id, att_reason, abs_id)"
-			+ " SELECT #{att_date}, #{att_shift}, #{stu_id}, #{att_reason}, #{abs_id} WHERE NOT EXISTS (SELECT 1 FROM smg_attendance WHERE att_date=#{att_date} AND att_shift=#{att_shift} AND stu_id=#{stu_id});"
+	String U_ATT_EXIST="UPDATE smg_attendance SET att_reason=#{att_reason}, abs_id=#{abs_id} WHERE att_date=#{att_date} AND att_shift=#{att_shift} AND stu_id=#{stu_id} AND mon_id=#{mon_id};"
+			+ " INSERT INTO smg_attendance(att_date, att_shift, stu_id, att_reason, abs_id, mon_id)"
+			+ " SELECT #{att_date}, #{att_shift}, #{stu_id}, #{att_reason}, #{abs_id}, #{mon_id} WHERE NOT EXISTS (SELECT 1 FROM smg_attendance WHERE att_date=#{att_date} AND att_shift=#{att_shift} AND stu_id=#{stu_id} AND mon_id=#{mon_id});"
 			+ " DELETE FROM smg_attendance WHERE abs_id=4";
 	@Update(U_ATT_EXIST)
 	public boolean updateAttendanceExist(Attendance att);
