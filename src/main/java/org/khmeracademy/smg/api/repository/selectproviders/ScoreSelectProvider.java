@@ -19,7 +19,7 @@ public class ScoreSelectProvider {
 			strBuilder.append("MAX(CASE WHEN sc.sub_id="+subject.getSub_id() +"THEN sc.sco_score ELSE NULL END)*"+subject.getSub_percent()+" AS "+ subject.getSub_name()+", ");
 		}
 		
-			strBuilder.append("10-Sum(abs.abs_score)/(SELECT COUNT(stu_id) FROM smg_score WHERE stu_id=(SELECT stu_id FROM smg_score LIMIT 1)) AS attendance "
+			strBuilder.append("Sum(abs.abs_score)/(SELECT COUNT(stu_id) FROM smg_score WHERE stu_id=(SELECT stu_id FROM smg_score LIMIT 1)) AS attendance "
 			+ "FROM smg_student stu "
 			+ "INNER JOIN smg_studentenroll se ON se.stu_id = stu.stu_id "
 			+ "LEFT JOIN smg_score sc ON sc.stu_id = se.stu_id AND sc.mon_id=#{mon_id} "
